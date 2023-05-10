@@ -9,15 +9,30 @@
         android:id="@+id/homeFragments"
         android:name="com.example.rickandmorty.ui.home.HomeFragments"
         android:label="fragment_home_fragments"
-        tools:layout="@layout/fragment_home_fragments" />
+        tools:layout="@layout/fragment_home_fragments" >
+        <action
+            android:id="@+id/action_homeFragments_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_homeFragments_to_favoriteFragments"
+            app:destination="@id/favoriteFragments" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragments"
         android:name="com.example.rickandmorty.ui.favorite.FavoriteFragments"
         android:label="fragment_favorite_fragments"
-        tools:layout="@layout/fragment_favorite_fragments" />
+        tools:layout="@layout/fragment_favorite_fragments" >
+        <action
+            android:id="@+id/action_favoriteFragments_to_homeFragments"
+            app:destination="@id/homeFragments" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.rickandmorty.ui.details.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_homeFragments"
+            app:destination="@id/homeFragments" />
+    </fragment>
 </navigation>
