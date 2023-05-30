@@ -29,7 +29,7 @@
         android:layout_height="250dp"
         android:scaleType="fitXY"
         android:layout_margin="10dp"
-        android:src="@drawable/rickandmorty"
+
         android:layout_gravity="center"
         >
     </ImageView>
@@ -38,7 +38,7 @@
         android:id="@+id/tv_characterName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rick Sanchez"
+
         android:layout_marginTop="5dp"
         android:textSize="28sp"
         android:textColor="#05BFAD"
@@ -52,7 +52,7 @@
         android:id="@+id/tv_characterStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Status: Alive"
+
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:textSize="20sp"
@@ -66,7 +66,7 @@
         android:id="@+id/tv_characterSpecies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Species: Human"
+
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:textSize="20sp"
@@ -80,7 +80,7 @@
         android:id="@+id/tv_characterGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gender: Male"
+
         android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:textSize="20sp"

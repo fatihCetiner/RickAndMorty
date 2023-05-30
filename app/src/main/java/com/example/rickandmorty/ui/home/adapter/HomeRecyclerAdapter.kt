@@ -6,7 +6,6 @@ import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import coil.load
 import com.example.rickandmorty.databinding.RickMortyLayoutBinding
 import com.example.rickandmorty.models.RickMorty
 import com.example.rickandmorty.ui.home.HomeFragmentsDirections
@@ -46,18 +45,12 @@ class HomeRecyclerAdapter :
             imageView.downloadFromUrl(imageLink, placeholderProgressBar(context = holder.itemView.context))
 
             holder.itemView.setOnClickListener {
-                val action = HomeFragmentsDirections.actionHomeFragmentsToDetailsFragment()
+                val action = HomeFragmentsDirections.actionHomeFragmentsToDetailsFragment(
+                    currentItem?.id!!
+                )
                 Navigation.findNavController(it).navigate(action)
             }
 
-            // use to coil
-            /*
-            imageView.load(imageLink) {
-                crossfade(true)
-                crossfade(1000)
-            }
-
-             */
         }
 
     }

@@ -34,5 +34,9 @@
         <action
             android:id="@+id/action_detailsFragment_to_homeFragments"
             app:destination="@id/homeFragments" />
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
 </navigation>
