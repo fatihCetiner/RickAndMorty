@@ -42,7 +42,10 @@ class HomeRecyclerAdapter :
 
             // use to Glide
 
-            imageView.downloadFromUrl(imageLink, placeholderProgressBar(context = holder.itemView.context))
+            imageView.downloadFromUrl(
+                imageLink,
+                placeholderProgressBar(context = holder.itemView.context)
+            )
 
             holder.itemView.setOnClickListener {
                 val action = HomeFragmentsDirections.actionHomeFragmentsToDetailsFragment(

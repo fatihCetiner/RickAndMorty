@@ -15,13 +15,13 @@ import javax.inject.Inject
 class DetailsViewModel @Inject
 constructor(
     private val apiService: ApiService
-) :ViewModel(){
+) : ViewModel() {
 
     val characterLiveData = MutableLiveData<RickMorty>()
 
-     fun getCharacter(id :Int){
+    fun getCharacter(id: Int) {
 
-         apiService.getCharacter(id).enqueue(object : Callback<RickMorty> {
+        apiService.getCharacter(id).enqueue(object : Callback<RickMorty> {
 
             override fun onResponse(
                 call: Call<RickMorty>,
@@ -30,7 +30,7 @@ constructor(
                 if (response.isSuccessful) {
                     characterLiveData.value = response.body()
 
-                }else{
+                } else {
 
                 }
             }

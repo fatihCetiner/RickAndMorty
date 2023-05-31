@@ -13,7 +13,7 @@ interface ApiService {
 
     @GET(Constants.END_POINT)
     suspend fun getAllCharacter(
-        @Query("page") page:Int
+        @Query("page") page: Int
     ): Response<ResponseApi>
 
     @GET("character/{id}")

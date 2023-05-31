@@ -62,7 +62,10 @@ class DetailsFragment : Fragment() {
                 binding.tvCharacterSpecies.text = "Species: ${rickmorty.species}"
                 binding.tvCharacterGender.text = "Gender: ${rickmorty.gender}"
 
-                binding.detailImageView.downloadFromUrl(rickmorty.image, placeholderProgressBar(requireContext()))
+                binding.detailImageView.downloadFromUrl(
+                    rickmorty.image,
+                    placeholderProgressBar(requireContext())
+                )
             }
 
         })
