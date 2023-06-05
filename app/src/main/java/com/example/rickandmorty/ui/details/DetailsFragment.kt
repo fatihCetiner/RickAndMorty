@@ -61,6 +61,7 @@ class DetailsFragment : Fragment() {
                 binding.tvCharacterStatus.text = "Status: ${rickmorty.status}"
                 binding.tvCharacterSpecies.text = "Species: ${rickmorty.species}"
                 binding.tvCharacterGender.text = "Gender: ${rickmorty.gender}"
+                binding.tvCharacterCreated.text = "Created: ${rickmorty.created}"
 
                 binding.detailImageView.downloadFromUrl(
                     rickmorty.image,
