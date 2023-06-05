@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,8 +14,10 @@ import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentHomeFragmentsBinding
 import com.example.rickandmorty.ui.home.adapter.HomeRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class HomeFragments : Fragment() {
@@ -56,7 +59,7 @@ class HomeFragments : Fragment() {
         mAdapter = HomeRecyclerAdapter()
         binding.recyclerView.apply {
 
-            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = GridLayoutManager(requireContext(), 2)
 
             adapter = mAdapter
             setHasFixedSize(true)
@@ -64,11 +67,16 @@ class HomeFragments : Fragment() {
     }
 
     private fun loadingData() {
+
         lifecycleScope.launch {
-            viewModel.listData.collect { pagingData ->
-
-                mAdapter.submitData(pagingData)
-
+            try {
+                viewModel.listData.collect { pagingData ->
+                    withContext(Dispatchers.Main) {
+                        mAdapter.submitData(pagingData)
+                    }
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Failed to load data!", Toast.LENGTH_LONG).show()
             }
         }
     }

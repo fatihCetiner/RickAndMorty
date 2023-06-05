@@ -3,7 +3,7 @@ package com.example.rickandmorty.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.rickandmorty.api.ApiService
-import com.example.rickandmorty.models.RickMorty
+import com.example.rickandmorty.data.RickMorty
 
 class RickMortyPagingSource(
     private val apiService: ApiService

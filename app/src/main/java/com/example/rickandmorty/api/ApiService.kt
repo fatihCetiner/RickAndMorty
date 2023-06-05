@@ -1,7 +1,7 @@
 package com.example.rickandmorty.api
 
-import com.example.rickandmorty.models.ResponseApi
-import com.example.rickandmorty.models.RickMorty
+import com.example.rickandmorty.data.ResponseApi
+import com.example.rickandmorty.data.RickMorty
 import com.example.rickandmorty.utils.Constants
 import retrofit2.Call
 import retrofit2.Response
@@ -17,6 +17,13 @@ interface ApiService {
     ): Response<ResponseApi>
 
     @GET("character/{id}")
-    fun getCharacter(@Path("id") id: Int): Call<RickMorty>
+    suspend fun getCharacter(@Path("id") id: Int): Response<RickMorty>
 
 }
+
+/*
+
+@GET("character/{id}")
+    fun getCharacter(@Path("id") id: Int): Call<RickMorty>
+
+ */
