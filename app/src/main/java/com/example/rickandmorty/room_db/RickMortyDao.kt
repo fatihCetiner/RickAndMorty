@@ -7,7 +7,7 @@ import com.example.rickandmorty.data.RickMorty
 interface RickMortyDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCharacter(character: RickMorty)
+    suspend fun insertCharacter(character: com.example.rickandmorty.data.RickMorty)
 
     @Delete
     suspend fun deleteCharacter(character: RickMorty)

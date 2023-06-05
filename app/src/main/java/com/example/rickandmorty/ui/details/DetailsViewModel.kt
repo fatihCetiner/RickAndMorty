@@ -1,24 +1,23 @@
 package com.example.rickandmorty.ui.details
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.api.ApiService
 import com.example.rickandmorty.data.RickMorty
+import com.example.rickandmorty.repo.RickMortyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject
 constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val repository: RickMortyRepository
 ) : ViewModel() {
 
     val characterLiveData = MutableLiveData<RickMorty?>()

@@ -11,7 +11,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentDetailsBinding
-import com.example.rickandmorty.ui.home.HomeFragmentsDirections
 import com.example.rickandmorty.utils.downloadFromUrl
 import com.example.rickandmorty.utils.placeholderProgressBar
 import com.google.android.material.snackbar.Snackbar
@@ -70,6 +69,8 @@ class DetailsFragment : Fragment() {
         }
 
     }
+
+
 
 
     private fun observeLiveData() {
