@@ -7,14 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
+import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentDetailsBinding
+import com.example.rickandmorty.ui.home.HomeFragmentsDirections
 import com.example.rickandmorty.utils.downloadFromUrl
 import com.example.rickandmorty.utils.placeholderProgressBar
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
+@Suppress("UNREACHABLE_CODE")
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
-
 
     private var id: Int? = null
 
@@ -42,16 +47,30 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        activity?.title = "Character Detail"
+
         arguments?.let {
             id = DetailsFragmentArgs.fromBundle(it).id
             viewModel.getCharacter(id!!)
         }
         observeLiveData()
 
-        activity?.title = "Character Detail"
 
+        binding.floatingActionButton.setOnClickListener {
+            val snackbar = Snackbar.make(view, "Character Saved", Snackbar.LENGTH_LONG)
+            snackbar.setAction("My Favorite Characters") {
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.detailsFragment, false) //  Close detailsFragment on return
+                    .build()
+
+                Navigation.findNavController(view)
+                    .navigate(R.id.action_detailsFragment_to_favoriteFragments, null, navOptions)
+            }
+            snackbar.show()
+        }
 
     }
+
 
     private fun observeLiveData() {
         viewModel.characterLiveData.observe(viewLifecycleOwner, Observer { rickmorty ->

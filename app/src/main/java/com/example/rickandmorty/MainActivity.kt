@@ -29,12 +29,13 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         binding.bottomNavigationView.setupWithNavController(navController)
 
         setTitle("RickAndMorty")
+
 
     }
 
@@ -58,17 +59,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         when(item.itemId){
             R.id.settings -> {
                     val settingsFragment = SettingsFragment()
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainerView, settingsFragment)
+                        .replace(R.id.navHostFragment, settingsFragment)
                         .addToBackStack(null)
                         .commit()
-
-                //Toast.makeText(this,"Settings Menu Clicked",Toast.LENGTH_LONG).show()
             }
         }
+
         return super.onOptionsItemSelected(item)
     }
 
