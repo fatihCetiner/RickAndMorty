@@ -38,4 +38,15 @@ constructor(
         }
     }
 
+    fun saveCharacter(character: RickMorty) {
+        viewModelScope.launch {
+            try {
+                repository.insertCharacter(character)
+            } catch (e: Exception) {
+                // Hata durumunda gerekli işlemleri yapabilirsiniz
+            }
+        }
+    }
+
+
 }

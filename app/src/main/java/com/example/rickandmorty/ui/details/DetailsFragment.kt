@@ -54,24 +54,32 @@ class DetailsFragment : Fragment() {
         }
         observeLiveData()
 
-
         binding.floatingActionButton.setOnClickListener {
-            val snackbar = Snackbar.make(view, "Character Saved", Snackbar.LENGTH_LONG)
-            snackbar.setAction("My Favorite Characters") {
-                val navOptions = NavOptions.Builder()
-                    .setPopUpTo(R.id.detailsFragment, false) //  Close detailsFragment on return
-                    .build()
-
-                Navigation.findNavController(view)
-                    .navigate(R.id.action_detailsFragment_to_favoriteFragments, null, navOptions)
-            }
-            snackbar.show()
+            saveCharacter()
+            showSnackBar()
         }
 
     }
 
+    private fun saveCharacter() {
+        val character = viewModel.characterLiveData.value
+        character?.let {
+            viewModel.saveCharacter(it)
+        }
+    }
 
+    private fun showSnackBar(){
+        val snackbar = Snackbar.make(binding.root, "Character Saved", Snackbar.LENGTH_LONG)
+        snackbar.setAction("My Favorite Characters") {
+            val navOptions = NavOptions.Builder()
+                .setPopUpTo(R.id.detailsFragment, false) //  Close detailsFragment on return
+                .build()
 
+            Navigation.findNavController(binding.root)
+                .navigate(R.id.action_detailsFragment_to_favoriteFragments, null, navOptions)
+        }
+        snackbar.show()
+    }
 
     private fun observeLiveData() {
         viewModel.characterLiveData.observe(viewLifecycleOwner, Observer { rickmorty ->
