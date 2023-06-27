@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentFavoriteFragmentsBinding
 import com.example.rickandmorty.ui.favorite.adapter.FavoriteRecyclerAdapter
@@ -21,6 +23,24 @@ class FavoriteFragments : Fragment() {
 
     private lateinit var mAdapter: FavoriteRecyclerAdapter
     private val viewModel: FavoriteViewModel by viewModels()
+
+    private val swipeCallBack =
+        object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val layoutPosition = viewHolder.layoutPosition
+                val selectedCharacter = mAdapter.currentList[layoutPosition]
+                viewModel.deleteCharacter(selectedCharacter)
+            }
+
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +62,8 @@ class FavoriteFragments : Fragment() {
 
         activity?.title = "Favorite"
 
+        ItemTouchHelper(swipeCallBack).attachToRecyclerView(binding.favCharacterRv)
+
         setupRv()
         observeCharacterList()
         loadCharacters()
@@ -55,9 +77,10 @@ class FavoriteFragments : Fragment() {
 
             layoutManager = LinearLayoutManager(requireContext())
             adapter = mAdapter
-            setHasFixedSize(true)
+
         }
     }
+
 
     private fun observeCharacterList() {
         viewModel.characterList.observe(viewLifecycleOwner) { characters ->

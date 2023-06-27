@@ -1,5 +1,6 @@
 package com.example.rickandmorty.ui.favorite.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -30,6 +31,7 @@ class FavoriteRecyclerAdapter :
 
     inner class FavoriteCharacterViewHolder(private val binding: FavRickMortyLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
 
         fun bind(character: RickMorty) {
             binding.tvCharacterName.text = character.name

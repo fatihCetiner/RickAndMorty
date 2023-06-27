@@ -35,4 +35,10 @@ constructor(
         }
     }
 
+    fun deleteCharacter(character: RickMorty) {
+        viewModelScope.launch {
+            repository.deleteCharacter(character)
+        }
+    }
+
 }
