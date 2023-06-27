@@ -43,7 +43,7 @@ constructor(
             try {
                 repository.insertCharacter(character)
             } catch (e: Exception) {
-                // Hata durumunda gerekli işlemleri yapabilirsiniz
+                // Not Saved
             }
         }
     }

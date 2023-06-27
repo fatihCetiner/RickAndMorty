@@ -15,6 +15,6 @@ interface RickMortyDao {
     @Query("SELECT * FROM rickmorty WHERE id = :id")
     suspend fun getCharacterById(id: Int): RickMorty?
 
-    @Query("SELECT * FROM rickmorty")
+    @Query("SELECT * FROM rickmorty ORDER BY id DESC")
     suspend fun getAllCharacters(): List<RickMorty>
 }
