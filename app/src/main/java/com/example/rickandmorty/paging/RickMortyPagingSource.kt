@@ -9,7 +9,6 @@ class RickMortyPagingSource(
     private val apiService: ApiService
 ) : PagingSource<Int, RickMorty>() {
 
-
     override fun getRefreshKey(state: PagingState<Int, RickMorty>): Int? {
         return null
     }

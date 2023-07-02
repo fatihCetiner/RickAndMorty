@@ -15,15 +15,12 @@ class HomeViewModel
 @Inject
 constructor(
     private val apiService: ApiService
-): ViewModel(){
+) : ViewModel() {
 
     val listData = Pager(PagingConfig(pageSize = 1)) {
         RickMortyPagingSource(apiService)
 
     }.flow.cachedIn(viewModelScope)
-
-
-
 
 }
 

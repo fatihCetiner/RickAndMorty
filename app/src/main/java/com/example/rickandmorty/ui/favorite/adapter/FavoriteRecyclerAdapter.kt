@@ -1,17 +1,14 @@
 package com.example.rickandmorty.ui.favorite.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.example.rickandmorty.R
 import com.example.rickandmorty.data.RickMorty
 import com.example.rickandmorty.databinding.FavRickMortyLayoutBinding
 import com.example.rickandmorty.utils.downloadFromUrl
-import com.example.rickandmorty.utils.placeholderProgressBar
 
 class FavoriteRecyclerAdapter :
     ListAdapter<RickMorty, FavoriteRecyclerAdapter.FavoriteCharacterViewHolder>(
@@ -32,8 +29,11 @@ class FavoriteRecyclerAdapter :
     inner class FavoriteCharacterViewHolder(private val binding: FavRickMortyLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-
+        private var currentCharacter: RickMorty? = null
         fun bind(character: RickMorty) {
+
+            currentCharacter = character
+
             binding.tvCharacterName.text = character.name
             binding.tvCharacterStatus.text = character.status
             binding.ivCharacterImage.downloadFromUrl(
@@ -42,6 +42,7 @@ class FavoriteRecyclerAdapter :
             )
 
         }
+
     }
 }
 

@@ -29,19 +29,15 @@ class DetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
-
+        return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -68,8 +64,8 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun showSnackBar(){
-        val snackbar = Snackbar.make(binding.root, "Character Saved", Snackbar.LENGTH_LONG)
+    private fun showSnackBar() {
+        val snackbar = Snackbar.make(binding.root, "Character Saved", Snackbar.LENGTH_SHORT)
         snackbar.setAction("My Favorite Characters") {
             val navOptions = NavOptions.Builder()
                 .setPopUpTo(R.id.detailsFragment, false) //  Close detailsFragment on return
@@ -85,6 +81,7 @@ class DetailsFragment : Fragment() {
         viewModel.characterLiveData.observe(viewLifecycleOwner, Observer { rickmorty ->
 
             rickmorty?.let {
+
                 binding.tvCharacterName.text = rickmorty.name
                 binding.tvCharacterStatus.text = "Status: ${rickmorty.status}"
                 binding.tvCharacterSpecies.text = "Species: ${rickmorty.species}"
@@ -99,6 +96,5 @@ class DetailsFragment : Fragment() {
 
         })
     }
-
 
 }

@@ -3,7 +3,6 @@ package com.example.rickandmorty.api
 import com.example.rickandmorty.data.ResponseApi
 import com.example.rickandmorty.data.RickMorty
 import com.example.rickandmorty.utils.Constants
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -20,10 +19,3 @@ interface ApiService {
     suspend fun getCharacter(@Path("id") id: Int): Response<RickMorty>
 
 }
-
-/*
-
-@GET("character/{id}")
-    fun getCharacter(@Path("id") id: Int): Call<RickMorty>
-
- */

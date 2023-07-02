@@ -43,10 +43,9 @@ constructor(
             try {
                 repository.insertCharacter(character)
             } catch (e: Exception) {
-                // Not Saved
+                val errorMessage = "Character could not be saved"
+                Log.e("SaveCharacter", errorMessage)
             }
         }
     }
-
-
 }

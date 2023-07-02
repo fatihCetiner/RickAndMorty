@@ -27,7 +27,6 @@ class HomeRecyclerAdapter :
             override fun areContentsTheSame(oldItem: RickMorty, newItem: RickMorty): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 
@@ -41,7 +40,6 @@ class HomeRecyclerAdapter :
             val imageLink = currentItem?.image
 
             // use to Glide
-
             imageView.downloadFromUrl(
                 imageLink,
                 placeholderProgressBar(context = holder.itemView.context)
@@ -53,9 +51,7 @@ class HomeRecyclerAdapter :
                 )
                 Navigation.findNavController(it).navigate(action)
             }
-
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
