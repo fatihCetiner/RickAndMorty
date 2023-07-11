@@ -1,6 +1,6 @@
-package com.example.rickandmorty.repo
+package com.example.rickandmorty.data.repo
 
-import com.example.rickandmorty.data.RickMorty
+import com.example.rickandmorty.data.model.RickMorty
 import com.example.rickandmorty.room_db.RickMortyDao
 import javax.inject.Inject
 

@@ -1,13 +1,13 @@
 package com.example.rickandmorty.room_db
 
 import androidx.room.*
-import com.example.rickandmorty.data.RickMorty
+import com.example.rickandmorty.data.model.RickMorty
 
 @Dao
 interface RickMortyDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCharacter(character: com.example.rickandmorty.data.RickMorty)
+    suspend fun insertCharacter(character: RickMorty)
 
     @Delete
     suspend fun deleteCharacter(character: RickMorty)

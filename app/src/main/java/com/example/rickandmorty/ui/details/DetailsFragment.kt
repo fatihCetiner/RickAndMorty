@@ -18,7 +18,6 @@ import com.example.rickandmorty.utils.downloadFromUrl
 import com.example.rickandmorty.utils.placeholderProgressBar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import okio.utf8Size
 
 @Suppress("UNREACHABLE_CODE")
 @AndroidEntryPoint

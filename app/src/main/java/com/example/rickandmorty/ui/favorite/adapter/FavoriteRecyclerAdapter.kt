@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.example.rickandmorty.data.RickMorty
+import com.example.rickandmorty.data.model.RickMorty
 import com.example.rickandmorty.databinding.FavRickMortyLayoutBinding
 import com.example.rickandmorty.utils.downloadFromUrl
 
