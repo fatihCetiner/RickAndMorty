@@ -30,6 +30,7 @@ class FavoriteRecyclerAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         private var currentCharacter: RickMorty? = null
+
         fun bind(character: RickMorty) {
 
             currentCharacter = character

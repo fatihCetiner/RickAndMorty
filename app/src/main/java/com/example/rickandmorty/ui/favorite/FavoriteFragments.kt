@@ -1,14 +1,21 @@
 package com.example.rickandmorty.ui.favorite
 
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentFavoriteFragmentsBinding
 import com.example.rickandmorty.ui.favorite.adapter.FavoriteRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +30,10 @@ class FavoriteFragments : Fragment() {
     private val viewModel: FavoriteViewModel by viewModels()
 
     private val swipeCallBack =
-        object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+        object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+
+            private var isSwiping = false
+
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -36,13 +46,83 @@ class FavoriteFragments : Fragment() {
                 val layoutPosition = viewHolder.layoutPosition
                 val selectedCharacter = mAdapter.currentList[layoutPosition]
                 viewModel.deleteCharacter(selectedCharacter)
-
+                Toast.makeText(requireContext(),"Character Delete",Toast.LENGTH_SHORT).show()
 
                 val updatedList = mAdapter.currentList.toMutableList()
                 updatedList.removeAt(layoutPosition)
                 mAdapter.submitList(updatedList)
 
                 checkListEmpty(updatedList.isEmpty())
+            }
+
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                val itemView = viewHolder.itemView
+
+                if (dX < 0) {
+                    val background = ColorDrawable(Color.RED)
+                    background.setBounds(
+                        itemView.right + dX.toInt(),
+                        itemView.top,
+                        itemView.right,
+                        itemView.bottom
+                    )
+                    background.draw(c)
+
+                    val deleteIcon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_delete) }
+                    val intrinsicWidth = deleteIcon?.intrinsicWidth ?: 0
+                    val intrinsicHeight = deleteIcon?.intrinsicHeight ?: 0
+                    val deleteIconMargin = (itemView.height - intrinsicHeight) / 2
+                    val deleteIconTop = itemView.top + deleteIconMargin
+                    val deleteIconBottom = deleteIconTop + intrinsicHeight
+                    val deleteIconLeft = itemView.right - deleteIconMargin - intrinsicWidth
+                    val deleteIconRight = itemView.right - deleteIconMargin
+                    deleteIcon?.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom)
+                    deleteIcon?.draw(c)
+
+                    // Kaydırma durumunu güncelleyin
+                    isSwiping = dX != 0f
+                } else {
+                    isSwiping = false
+                }
+
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+            }
+
+            override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
+                // Button yarıya kadar kaydırıldığında işlem yapmasını engelleyin
+                return 0.5f
+            }
+
+            override fun getSwipeEscapeVelocity(defaultValue: Float): Float {
+                // Button yarıya kadar kaydırıldığında işlem yapmasını engelleyin
+                return Float.MAX_VALUE
+            }
+
+            override fun getSwipeVelocityThreshold(defaultValue: Float): Float {
+                // Button yarıya kadar kaydırıldığında işlem yapmasını engelleyin
+                return Float.MAX_VALUE
+            }
+
+            override fun onChildDrawOver(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                if (!isSwiping) {
+                    super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                }
             }
 
         }

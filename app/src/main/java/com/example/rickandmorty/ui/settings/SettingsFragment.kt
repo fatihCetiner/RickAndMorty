@@ -26,6 +26,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
             .registerOnSharedPreferenceChangeListener(this)
     }
 
+
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == "dark_mode") {
             val prefs = sharedPreferences?.getString(key, "1")?.toIntOrNull()
@@ -48,6 +49,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
             }
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
