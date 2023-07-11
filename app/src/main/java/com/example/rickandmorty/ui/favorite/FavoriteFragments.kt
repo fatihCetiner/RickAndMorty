@@ -96,21 +96,6 @@ class FavoriteFragments : Fragment() {
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             }
 
-            override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
-                // Button yarıya kadar kaydırıldığında işlem yapmasını engelleyin
-                return 0.5f
-            }
-
-            override fun getSwipeEscapeVelocity(defaultValue: Float): Float {
-                // Button yarıya kadar kaydırıldığında işlem yapmasını engelleyin
-                return Float.MAX_VALUE
-            }
-
-            override fun getSwipeVelocityThreshold(defaultValue: Float): Float {
-                // Button yarıya kadar kaydırıldığında işlem yapmasını engelleyin
-                return Float.MAX_VALUE
-            }
-
             override fun onChildDrawOver(
                 c: Canvas,
                 recyclerView: RecyclerView,
