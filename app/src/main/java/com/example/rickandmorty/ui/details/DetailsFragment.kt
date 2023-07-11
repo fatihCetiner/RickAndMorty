@@ -18,6 +18,7 @@ import com.example.rickandmorty.utils.downloadFromUrl
 import com.example.rickandmorty.utils.placeholderProgressBar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import okio.utf8Size
 
 @Suppress("UNREACHABLE_CODE")
 @AndroidEntryPoint
@@ -92,6 +93,12 @@ class DetailsFragment : Fragment() {
                 binding.tvCharacterSpecies.text = "Species: ${rickmorty.species}"
                 binding.tvCharacterGender.text = "Gender: ${rickmorty.gender}"
                 binding.tvCharacterCreated.text = "Created: ${convertDate(rickmorty.created)}"
+
+                val episodes = rickmorty.episode.map { url ->
+                    val parts = url.split("/")
+                    parts.last().toString()
+                }
+                binding.tvCharacterEpisode.text = "Episode: ${episodes.get(0)}"
 
                 binding.detailImageView.downloadFromUrl(
                     rickmorty.image,
