@@ -13,6 +13,7 @@ import com.example.rickandmorty.databinding.FragmentHomeFragmentsBinding
 import com.example.rickandmorty.ui.home.adapter.HomeRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -27,7 +28,6 @@ class HomeFragments : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -60,15 +60,17 @@ class HomeFragments : Fragment() {
         }
     }
 
+
     private fun loadingData() {
 
         lifecycleScope.launch {
             try {
-                viewModel.listData.collect { pagingData ->
+                viewModel.listData.collectLatest { pagingData ->
                     withContext(Dispatchers.Main) {
                         mAdapter.submitData(pagingData)
                     }
                 }
+
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Failed to load data!", Toast.LENGTH_LONG).show()
             }
@@ -79,5 +81,4 @@ class HomeFragments : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

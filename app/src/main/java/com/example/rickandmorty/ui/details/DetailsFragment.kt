@@ -1,16 +1,19 @@
 package com.example.rickandmorty.ui.details
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentDetailsBinding
+import com.example.rickandmorty.utils.DateConverter.Companion.convertDate
 import com.example.rickandmorty.utils.downloadFromUrl
 import com.example.rickandmorty.utils.placeholderProgressBar
 import com.google.android.material.snackbar.Snackbar
@@ -39,6 +42,7 @@ class DetailsFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -77,6 +81,7 @@ class DetailsFragment : Fragment() {
         snackbar.show()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun observeLiveData() {
         viewModel.characterLiveData.observe(viewLifecycleOwner, Observer { rickmorty ->
 
@@ -86,7 +91,7 @@ class DetailsFragment : Fragment() {
                 binding.tvCharacterStatus.text = "Status: ${rickmorty.status}"
                 binding.tvCharacterSpecies.text = "Species: ${rickmorty.species}"
                 binding.tvCharacterGender.text = "Gender: ${rickmorty.gender}"
-                binding.tvCharacterCreated.text = "Created: ${rickmorty.created}"
+                binding.tvCharacterCreated.text = "Created: ${convertDate(rickmorty.created)}"
 
                 binding.detailImageView.downloadFromUrl(
                     rickmorty.image,
