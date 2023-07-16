@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
                     .addToBackStack(null)
                     .commit()
             }
+
         }
 
         return super.onOptionsItemSelected(item)
