@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import androidx.preference.PreferenceManager
 import com.example.rickandmorty.databinding.ActivityMainBinding
 import com.example.rickandmorty.ui.settings.SettingsFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,16 +24,39 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        setupNavigation()
+        setTheme()
+    }
 
+    private fun setupNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        navigationController = navHostFragment.navController
 
-        binding.bottomNavigationView.setupWithNavController(navController)
-
-        setTitle("RickAndMorty")
-
+        binding.bottomNavigationView.setupWithNavController(navigationController)
     }
+
+    private fun setTheme() {
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+        when (sp.getString("dark_mode", "")?.toIntOrNull()) {
+            1 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+
+            2 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+
+            3 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+
+            4 -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
+            }
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.top_menu, menu)
@@ -41,17 +66,10 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.settings -> {
-                val settingsFragment = SettingsFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.navHostFragment, settingsFragment)
-                    .addToBackStack(null)
-                    .commit()
+            R.id.settingsFragment -> {
+                navigationController.navigate(R.id.settingsFragment)
             }
-
         }
-
         return super.onOptionsItemSelected(item)
     }
-
 }
