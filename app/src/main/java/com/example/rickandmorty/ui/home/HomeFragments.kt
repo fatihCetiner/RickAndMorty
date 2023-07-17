@@ -1,6 +1,7 @@
 package com.example.rickandmorty.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentHomeFragmentsBinding
 import com.example.rickandmorty.ui.home.adapter.HomeRecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +44,7 @@ class HomeFragments : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activity?.title = "Character"
+        activity?.title = getString(R.string.page_characters)
 
         setupRv()
         loadingData()
@@ -72,7 +74,7 @@ class HomeFragments : Fragment() {
                 }
 
             } catch (e: Exception) {
-                Toast.makeText(requireContext(), "Failed to load data!", Toast.LENGTH_LONG).show()
+                Log.e("MSG","Failed to load data!")
             }
         }
     }

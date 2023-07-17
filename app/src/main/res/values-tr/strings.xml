@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">RickAndMorty</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -17,35 +17,32 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
+
     <!-- Page Name-->
-    <string name="page_characters" >"Characters"</string>
-    <string name="page_favorites">Favorite</string>
-    <string name="page_detail">Character Detail</string>
-    <string name="page_settings">Settings</string>
+    <string name="page_characters" >"Karakterler"</string>
+    <string name="page_favorites">Favoriler</string>
+    <string name="page_detail">Karakter Detayı</string>
+    <string name="page_settings">Ayarlar</string>
 
     <!-- Menu Name-->
-    <string name="menu_character">Character</string>
-    <string name="menu_favorite">Favorite</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_character">Karakter</string>
+    <string name="menu_favorite">Favori</string>
+    <string name="menu_settings">Ayarlar</string>
 
     <!-- Detail Name-->
-    <string name="status">Status</string>
-    <string name="species">Species</string>
-    <string name="gender">Gender</string>
-    <string name="created">Created</string>
-    <string name="episode">Episode</string>
+    <string name="status">Durum</string>
+    <string name="species">Tür</string>
+    <string name="gender">Cinsiyet</string>
+    <string name="created">Oluşturulma</string>
+    <string name="episode">Bölüm</string>
 
     <!-- No Fav Character Msg-->
-    <string name="no_character_msg" >You Haven\'t Added Favorite Characters Yet!</string>
+    <string name="no_character_msg" tools:ignore="StringEscaping">Henüz Favori Karakterinizi Eklemediniz!</string>
 
     <!-- Delete Character Msg-->
-    <string name="delete_character_msg">Deleted</string>
+    <string name="delete_character_msg">Silindi</string>
 
     <!-- Snack Bar Msg-->
-    <string name="character_saved">Character Saved</string>
-    <string name="my_fav_character">My Favorite Characters</string>
-
-
-
-
+    <string name="character_saved">Karakter Kaydedildi</string>
+    <string name="my_fav_character">Favori Karakterlerim</string>
 </resources>

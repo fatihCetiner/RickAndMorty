@@ -46,7 +46,7 @@ class FavoriteFragments : Fragment() {
                 val layoutPosition = viewHolder.layoutPosition
                 val selectedCharacter = mAdapter.currentList[layoutPosition]
                 viewModel.deleteCharacter(selectedCharacter)
-                Toast.makeText(requireContext(),"Character Delete",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),"${selectedCharacter.name} "+getString(R.string.delete_character_msg),Toast.LENGTH_SHORT).show()
 
                 val updatedList = mAdapter.currentList.toMutableList()
                 updatedList.removeAt(layoutPosition)
@@ -129,7 +129,7 @@ class FavoriteFragments : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activity?.title = "Favorite"
+        activity?.title = getString(R.string.page_favorites)
 
         setupRv()
         loadCharacters()

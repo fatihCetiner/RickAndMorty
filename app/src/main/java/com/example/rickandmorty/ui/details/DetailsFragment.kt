@@ -1,5 +1,6 @@
 package com.example.rickandmorty.ui.details
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -46,7 +47,7 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activity?.title = "Character Detail"
+        activity?.title = getString(R.string.page_detail)
 
         arguments?.let {
             id = DetailsFragmentArgs.fromBundle(it).id
@@ -69,8 +70,8 @@ class DetailsFragment : Fragment() {
     }
 
     private fun showSnackBar() {
-        val snackbar = Snackbar.make(binding.root, "Character Saved", Snackbar.LENGTH_SHORT)
-        snackbar.setAction("My Favorite Characters") {
+        val snackbar = Snackbar.make(binding.root, getString(R.string.character_saved), Snackbar.LENGTH_SHORT)
+        snackbar.setAction(getString(R.string.my_fav_character)) {
             val navOptions = NavOptions.Builder()
                 .setPopUpTo(R.id.detailsFragment, false) //  Close detailsFragment on return
                 .build()
@@ -81,6 +82,7 @@ class DetailsFragment : Fragment() {
         snackbar.show()
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun observeLiveData() {
         viewModel.characterLiveData.observe(viewLifecycleOwner, Observer { rickmorty ->
@@ -88,16 +90,16 @@ class DetailsFragment : Fragment() {
             rickmorty?.let {
 
                 binding.tvCharacterName.text = rickmorty.name
-                binding.tvCharacterStatus.text = "Status: ${rickmorty.status}"
-                binding.tvCharacterSpecies.text = "Species: ${rickmorty.species}"
-                binding.tvCharacterGender.text = "Gender: ${rickmorty.gender}"
-                binding.tvCharacterCreated.text = "Created: ${convertDate(rickmorty.created)}"
+                binding.tvCharacterStatus.text = getString(R.string.status)+": ${rickmorty.status}"
+                binding.tvCharacterSpecies.text = getString(R.string.species)+": ${rickmorty.species}"
+                binding.tvCharacterGender.text = getString(R.string.gender)+": ${rickmorty.gender}"
+                binding.tvCharacterCreated.text = getString(R.string.created)+": ${convertDate(rickmorty.created)}"
 
                 val episodes = rickmorty.episode.map { url ->
                     val parts = url.split("/")
                     parts.last().toString()
                 }
-                binding.tvCharacterEpisode.text = "Episode: ${episodes.get(0)}"
+                binding.tvCharacterEpisode.text = getString(R.string.episode)+": ${episodes.get(0)}"
 
                 binding.detailImageView.downloadFromUrl(
                     rickmorty.image,

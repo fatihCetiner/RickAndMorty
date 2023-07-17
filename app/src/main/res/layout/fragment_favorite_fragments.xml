@@ -21,7 +21,7 @@
         android:id="@+id/isEmptyMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You Haven't Added Favorite Characters Yet !"
+        android:text="@string/no_character_msg"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/black"
