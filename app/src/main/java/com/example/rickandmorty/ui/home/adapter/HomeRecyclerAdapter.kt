@@ -7,7 +7,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.rickandmorty.databinding.RickMortyLayoutBinding
-import com.example.rickandmorty.data.model.RickMorty
+import com.example.rickandmorty.core.model.RickMorty
 import com.example.rickandmorty.ui.home.HomeFragmentsDirections
 import com.example.rickandmorty.utils.downloadFromUrl
 import com.example.rickandmorty.utils.placeholderProgressBar

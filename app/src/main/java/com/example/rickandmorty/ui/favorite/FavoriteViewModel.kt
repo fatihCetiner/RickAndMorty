@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.data.model.RickMorty
-import com.example.rickandmorty.data.repo.RickMortyRepository
+import com.example.rickandmorty.core.model.RickMorty
+import com.example.rickandmorty.data.repository.RickMortyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

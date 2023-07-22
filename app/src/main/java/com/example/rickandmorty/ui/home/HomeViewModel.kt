@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.example.rickandmorty.api.ApiService
+import com.example.rickandmorty.data.remote.ApiService
 import com.example.rickandmorty.utils.RickMortyPagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

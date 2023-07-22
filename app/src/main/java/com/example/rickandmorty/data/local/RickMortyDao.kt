@@ -1,7 +1,7 @@
-package com.example.rickandmorty.room_db
+package com.example.rickandmorty.data.local
 
 import androidx.room.*
-import com.example.rickandmorty.data.model.RickMorty
+import com.example.rickandmorty.core.model.RickMorty
 
 @Dao
 interface RickMortyDao {

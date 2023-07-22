@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.api.ApiService
-import com.example.rickandmorty.data.model.RickMorty
-import com.example.rickandmorty.data.repo.RickMortyRepository
+import com.example.rickandmorty.data.remote.ApiService
+import com.example.rickandmorty.core.model.RickMorty
+import com.example.rickandmorty.data.repository.RickMortyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
