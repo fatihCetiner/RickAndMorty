@@ -22,7 +22,8 @@ Bu, güncel kütüphaneler kullanılarak geliştirilmiş bir çizgi film karakte
 1. Uygulamayı çalıştırın.
 2. Ana ekranda çizgi film karakterlerini görüntüleyin.
 3. Karakterler hakkında ayrıntılı bilgileri görmek için bir karaktere dokunun.
-4. Arama işlevini kullanarak karakterleri adlarına göre filtreleyin.
+4. Favori karakterinizi kayıt edin ve listeleyin.
+5. Eğer isterseniz favori karakterinizi sola kaydırarak silin.
 
 ## Örnek Kullanım Kodu
 
