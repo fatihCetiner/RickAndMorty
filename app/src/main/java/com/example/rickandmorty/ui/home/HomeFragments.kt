@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentHomeFragmentsBinding
@@ -48,6 +50,13 @@ class HomeFragments : Fragment() {
 
         setupRv()
         loadingData()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            mAdapter.loadStateFlow.collectLatest { loadStates ->
+                binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
+                binding.errorMsg.isVisible = loadStates.refresh is LoadState.Error
+            }
+        }
     }
 
     private fun setupRv() {
@@ -62,19 +71,14 @@ class HomeFragments : Fragment() {
         }
     }
 
-
     private fun loadingData() {
-
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             try {
                 viewModel.listData.collectLatest { pagingData ->
-                    withContext(Dispatchers.Main) {
-                        mAdapter.submitData(pagingData)
-                    }
+                    mAdapter.submitData(pagingData)
                 }
-
             } catch (e: Exception) {
-                Log.e("MSG","Failed to load data!")
+                Log.e("Error", "Not Loading Data !")
             }
         }
     }

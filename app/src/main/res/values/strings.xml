@@ -45,6 +45,9 @@
     <string name="character_saved">Character Saved</string>
     <string name="my_fav_character">My Favorite Characters</string>
 
+    <!-- Error Msg-->
+    <string name="error_msg">Check Your Internet Connection !</string>
+
 
 
 

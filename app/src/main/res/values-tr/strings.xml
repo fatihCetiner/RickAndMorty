@@ -45,4 +45,8 @@
     <!-- Snack Bar Msg-->
     <string name="character_saved">Karakter Kaydedildi</string>
     <string name="my_fav_character">Favori Karakterlerim</string>
+
+    <!-- Error Msg-->
+    <string name="error_msg">İnternet Bağlantınızı Kontrol Edin !</string>
+
 </resources>
