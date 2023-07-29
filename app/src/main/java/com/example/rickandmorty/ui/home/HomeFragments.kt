@@ -50,13 +50,8 @@ class HomeFragments : Fragment() {
 
         setupRv()
         loadingData()
+        isLoading()
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            mAdapter.loadStateFlow.collectLatest { loadStates ->
-                binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
-                binding.errorMsg.isVisible = loadStates.refresh is LoadState.Error
-            }
-        }
     }
 
     private fun setupRv() {
@@ -79,6 +74,15 @@ class HomeFragments : Fragment() {
                 }
             } catch (e: Exception) {
                 Log.e("Error", "Not Loading Data !")
+            }
+        }
+    }
+
+    private fun isLoading(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            mAdapter.loadStateFlow.collectLatest { loadStates ->
+                binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
+                binding.errorMsg.isVisible = loadStates.refresh is LoadState.Error
             }
         }
     }
