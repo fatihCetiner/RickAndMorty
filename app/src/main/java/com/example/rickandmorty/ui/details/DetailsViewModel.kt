@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.rickandmorty.data.remote.ApiService
-import com.example.rickandmorty.core.model.RickMorty
-import com.example.rickandmorty.data.repository.RickMortyRepository
+import com.example.rickandmorty.data.remote.dto.RickMorty
+import com.example.rickandmorty.data.repository.RickMortyRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class DetailsViewModel @Inject
 constructor(
     private val apiService: ApiService,
-    private val repository: RickMortyRepository
+    private val repository: RickMortyRepositoryImpl
 ) : ViewModel() {
 
     val characterLiveData = MutableLiveData<RickMorty?>()

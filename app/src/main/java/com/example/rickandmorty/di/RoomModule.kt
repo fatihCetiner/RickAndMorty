@@ -2,7 +2,7 @@ package com.example.rickandmorty.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.rickandmorty.data.repository.RickMortyRepository
+import com.example.rickandmorty.data.repository.RickMortyRepositoryImpl
 import com.example.rickandmorty.data.local.RickMortyDao
 import com.example.rickandmorty.data.local.RickMortyDatabase
 import dagger.Module
@@ -32,7 +32,7 @@ object RoomModule {
 
     @Provides
     @Singleton
-    fun provideRickMortyRepository(rickMortyDao: RickMortyDao): RickMortyRepository {
-        return RickMortyRepository(rickMortyDao)
+    fun provideRickMortyRepository(rickMortyDao: RickMortyDao): RickMortyRepositoryImpl {
+        return RickMortyRepositoryImpl(rickMortyDao)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.rickandmorty.core.model
+package com.example.rickandmorty.data.remote.dto
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

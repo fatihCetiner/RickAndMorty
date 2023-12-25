@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -160,13 +162,8 @@ class FavoriteFragments : Fragment() {
     }
 
     private fun checkListEmpty(isEmpty: Boolean) {
-        if (isEmpty) {
-            binding.isEmptyMessage.visibility = View.VISIBLE
-            binding.favCharacterRv.visibility = View.GONE
-        } else {
-            binding.isEmptyMessage.visibility = View.GONE
-            binding.favCharacterRv.visibility = View.VISIBLE
-        }
+        binding.isEmptyMessage.isVisible = isEmpty
+        binding.favCharacterRv.isGone = isEmpty
     }
 
     override fun onDestroyView() {
