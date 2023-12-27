@@ -11,11 +11,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoriteViewModel @Inject
-constructor(
+class FavoriteViewModel @Inject constructor(
     private val repository: RickMortyRepositoryImpl
 ) : ViewModel() {
-
 
     private val _characterList = MutableLiveData<List<RickMorty>>()
     val characterList: LiveData<List<RickMorty>> = _characterList
@@ -26,12 +24,14 @@ constructor(
     fun getAllCharacters() {
         viewModelScope.launch {
             val characters = repository.getAllCharacters()
-            if (characters.isNotEmpty()) {
+            _characterList.value = characters
+            _isEmpty.value = characters.isEmpty()
+            /*if (characters.isNotEmpty()) {
                 _characterList.value = characters
                 _isEmpty.value = false
             } else {
                 _isEmpty.value = true
-            }
+            }*/
         }
     }
 

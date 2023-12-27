@@ -33,6 +33,8 @@
 
     <!-- Detail Name-->
     <string name="status">Status</string>
+    <string name="status_format">Status: %s</string>
+
     <string name="species">Species</string>
     <string name="gender">Gender</string>
     <string name="created">Created</string>
