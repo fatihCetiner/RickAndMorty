@@ -23,11 +23,16 @@
     <string name="page_favorites">Favoriler</string>
     <string name="page_detail">Karakter Detayı</string>
     <string name="page_settings">Ayarlar</string>
+    <string name="page_sign_in">Giriş Yap</string>
+    <string name="page_sign_up">Kayıt Ol</string>
+
+
 
     <!-- Menu Name-->
     <string name="menu_character">Karakter</string>
     <string name="menu_favorite">Favori</string>
     <string name="menu_settings">Ayarlar</string>
+    <string name="menu_sıgn_out">Çıkış Yap</string>
 
     <!-- Detail Name-->
     <string name="status">Durum</string>
@@ -48,5 +53,12 @@
 
     <!-- Error Msg-->
     <string name="error_msg">İnternet Bağlantınızı Kontrol Edin !</string>
+
+    <!-- Sign In Page -->
+    <string name="sign_in_tv">Giriş Yap</string>
+    <string name="user_email_tv">E-mail gir</string>
+    <string name="user_password_tv">Şifre Gir</string>
+    <string name="register_now">Şimdi Kayıt Ol</string>
+    <string name="sign_in_btn">Giriş Yap</string>
 
 </resources>

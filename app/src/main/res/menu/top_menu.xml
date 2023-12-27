@@ -6,4 +6,8 @@
 
     </item>
 
+    <item android:id="@+id/sign_out" android:title="@string/menu_sıgn_out">
+
+    </item>
+
 </menu>

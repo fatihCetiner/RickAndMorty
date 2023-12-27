@@ -18,15 +18,18 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
     <!-- Page Name-->
-    <string name="page_characters" >"Characters"</string>
+    <string name="page_characters">"Characters"</string>
     <string name="page_favorites">Favorite</string>
     <string name="page_detail">Character Detail</string>
     <string name="page_settings">Settings</string>
+    <string name="page_sign_in">Sign In</string>
+    <string name="page_sign_up">Sign Up</string>
 
     <!-- Menu Name-->
     <string name="menu_character">Character</string>
     <string name="menu_favorite">Favorite</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_sıgn_out">Sign Out</string>
 
     <!-- Detail Name-->
     <string name="status">Status</string>
@@ -36,7 +39,7 @@
     <string name="episode">Episode</string>
 
     <!-- No Fav Character Msg-->
-    <string name="no_character_msg" >You Haven\'t Added Favorite Characters Yet!</string>
+    <string name="no_character_msg">You Haven\'t Added Favorite Characters Yet!</string>
 
     <!-- Delete Character Msg-->
     <string name="delete_character_msg">Deleted</string>
@@ -48,7 +51,12 @@
     <!-- Error Msg-->
     <string name="error_msg">Check Your Internet Connection !</string>
 
-
+    <!-- Sign In Page -->
+    <string name="sign_in_tv">Sign In</string>
+    <string name="user_email_tv">Enter e-mail</string>
+    <string name="user_password_tv">Enter Password</string>
+    <string name="register_now">Register Now</string>
+    <string name="sign_in_btn">Sign In</string>
 
 
 </resources>
