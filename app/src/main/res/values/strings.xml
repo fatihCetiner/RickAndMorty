@@ -58,5 +58,11 @@
     <string name="register_now">Register Now</string>
     <string name="sign_in_btn">Sign In</string>
 
+    <!-- Sign up Page -->
+    <string name="sign_up_tv">Sign Up</string>
+    <string name="sign_up_user_email_tv">Enter e-mail</string>
+    <string name="sign_up_user_password_tv">Enter Password</string>
+    <string name="sign_up_btn">Sign Up</string>
+
 
 </resources>

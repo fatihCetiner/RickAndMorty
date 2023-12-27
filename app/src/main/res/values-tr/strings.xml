@@ -61,4 +61,9 @@
     <string name="register_now">Şimdi Kayıt Ol</string>
     <string name="sign_in_btn">Giriş Yap</string>
 
+    <!-- Sign Up Page -->
+    <string name="sign_up_tv">Kayıt Ol</string>
+    <string name="sign_up_user_email_tv">E-mail gir</string>
+    <string name="sign_up_user_password_tv">Şifre Gir</string>
+    <string name="sign_up_btn">Kayıt Ol</string>
 </resources>
