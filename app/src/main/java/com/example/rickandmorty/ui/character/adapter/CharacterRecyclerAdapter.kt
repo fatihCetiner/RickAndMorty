@@ -40,7 +40,7 @@ class CharacterRecyclerAdapter(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ),callbacks = callbacks
+            ), callbacks = callbacks
         )
     }
 }

@@ -10,10 +10,20 @@ import com.example.rickandmorty.data.remote.dto.RickMorty
 import com.example.rickandmorty.databinding.FavRickMortyLayoutBinding
 import com.example.rickandmorty.utils.downloadFromUrl
 
-class FavoriteRecyclerAdapter :
-    ListAdapter<RickMorty, FavoriteRecyclerAdapter.FavoriteCharacterViewHolder>(
-        FavoriteCharacterDiffCallback()
-    ) {
+class FavoriteRecyclerAdapter : ListAdapter<RickMorty, FavoriteCharacterViewHolder>(
+    FavoriteCharacterDiffCallback()
+) {
+    class FavoriteCharacterDiffCallback : DiffUtil.ItemCallback<RickMorty>() {
+        override fun areItemsTheSame(
+            oldItem: RickMorty,
+            newItem: RickMorty
+        ) = oldItem.id == newItem.id
+
+        override fun areContentsTheSame(
+            oldItem: RickMorty,
+            newItem: RickMorty
+        ) = oldItem == newItem
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteCharacterViewHolder {
         val binding =
@@ -26,33 +36,5 @@ class FavoriteRecyclerAdapter :
         holder.bind(character)
     }
 
-    inner class FavoriteCharacterViewHolder(private val binding: FavRickMortyLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        private var currentCharacter: RickMorty? = null
-
-        fun bind(character: RickMorty) {
-
-            currentCharacter = character
-
-            binding.tvCharacterName.text = character.name
-            binding.tvCharacterStatus.text = character.status
-            binding.ivCharacterImage.downloadFromUrl(
-                character.image,
-                CircularProgressDrawable(binding.root.context)
-            )
-
-        }
-
-    }
 }
 
-class FavoriteCharacterDiffCallback : DiffUtil.ItemCallback<RickMorty>() {
-    override fun areItemsTheSame(oldItem: RickMorty, newItem: RickMorty): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: RickMorty, newItem: RickMorty): Boolean {
-        return oldItem == newItem
-    }
-}
