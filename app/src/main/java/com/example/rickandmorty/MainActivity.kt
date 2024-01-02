@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager
 import com.example.rickandmorty.databinding.ActivityMainBinding
@@ -25,6 +28,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         setupNavigation()
         setTheme()
+
+        // Bottom Menu Visibility
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController: NavController = navHostFragment.navController
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
+        navController.addOnDestinationChangedListener{_,destination, _ ->
+            when(destination.id){
+                R.id.signInFragment -> binding.bottomNavigationView.isGone = true
+                R.id.signUpFragment -> binding.bottomNavigationView.isGone = true
+                R.id.detailsFragment -> binding.bottomNavigationView.isGone = true
+                R.id.homeFragments -> binding.bottomNavigationView.isVisible = true
+                R.id.favoriteFragments -> binding.bottomNavigationView.isVisible = true
+            }
+        }
+
     }
 
     private fun setupNavigation() {

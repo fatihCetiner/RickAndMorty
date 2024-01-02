@@ -27,8 +27,9 @@
         android:layout_height="185dp"
         android:layout_marginTop="28dp"
         android:src="@drawable/ic_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUpTv"
-        tools:layout_editor_absoluteX="122dp"
         tools:ignore="MissingConstraints" />
 
     <EditText
