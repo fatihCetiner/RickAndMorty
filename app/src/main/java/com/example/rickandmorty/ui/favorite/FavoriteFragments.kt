@@ -28,7 +28,9 @@ class FavoriteFragments : Fragment() {
     private var _binding: FragmentFavoriteFragmentsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var mAdapter: FavoriteRecyclerAdapter
+    private val favRecyclerAdapter: FavoriteRecyclerAdapter by lazy {
+        FavoriteRecyclerAdapter()
+    }
     private val viewModel: FavoriteViewModel by viewModels()
 
     private val swipeCallBack =
@@ -46,13 +48,17 @@ class FavoriteFragments : Fragment() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val layoutPosition = viewHolder.layoutPosition
-                val selectedCharacter = mAdapter.currentList[layoutPosition]
+                val selectedCharacter = favRecyclerAdapter.currentList[layoutPosition]
                 viewModel.deleteCharacter(selectedCharacter)
-                Toast.makeText(requireContext(),"${selectedCharacter.name} "+getString(R.string.delete_character_msg),Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "${selectedCharacter.name} " + getString(R.string.delete_character_msg),
+                    Toast.LENGTH_SHORT
+                ).show()
 
-                val updatedList = mAdapter.currentList.toMutableList()
+                val updatedList = favRecyclerAdapter.currentList.toMutableList()
                 updatedList.removeAt(layoutPosition)
-                mAdapter.submitList(updatedList)
+                favRecyclerAdapter.submitList(updatedList)
 
                 checkListEmpty(updatedList.isEmpty())
             }
@@ -78,7 +84,8 @@ class FavoriteFragments : Fragment() {
                     )
                     background.draw(c)
 
-                    val deleteIcon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_delete) }
+                    val deleteIcon =
+                        context?.let { ContextCompat.getDrawable(it, R.drawable.ic_delete) }
                     val intrinsicWidth = deleteIcon?.intrinsicWidth ?: 0
                     val intrinsicHeight = deleteIcon?.intrinsicHeight ?: 0
                     val deleteIconMargin = (itemView.height - intrinsicHeight) / 2
@@ -86,7 +93,12 @@ class FavoriteFragments : Fragment() {
                     val deleteIconBottom = deleteIconTop + intrinsicHeight
                     val deleteIconLeft = itemView.right - deleteIconMargin - intrinsicWidth
                     val deleteIconRight = itemView.right - deleteIconMargin
-                    deleteIcon?.setBounds(deleteIconLeft, deleteIconTop, deleteIconRight, deleteIconBottom)
+                    deleteIcon?.setBounds(
+                        deleteIconLeft,
+                        deleteIconTop,
+                        deleteIconRight,
+                        deleteIconBottom
+                    )
                     deleteIcon?.draw(c)
 
                     // Kaydırma durumunu güncelleyin
@@ -95,7 +107,15 @@ class FavoriteFragments : Fragment() {
                     isSwiping = false
                 }
 
-                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                super.onChildDraw(
+                    c,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                )
             }
 
             override fun onChildDrawOver(
@@ -108,7 +128,15 @@ class FavoriteFragments : Fragment() {
                 isCurrentlyActive: Boolean
             ) {
                 if (!isSwiping) {
-                    super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    super.onChildDrawOver(
+                        c,
+                        recyclerView,
+                        viewHolder,
+                        dX,
+                        dY,
+                        actionState,
+                        isCurrentlyActive
+                    )
                 }
             }
 
@@ -118,7 +146,6 @@ class FavoriteFragments : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentFavoriteFragmentsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -128,37 +155,30 @@ class FavoriteFragments : Fragment() {
 
         activity?.title = getString(R.string.page_favorites)
 
-        setupRv()
-        loadCharacters()
-        observeCharacterList()
+        observe()
+        initViews()
         ItemTouchHelper(swipeCallBack).attachToRecyclerView(binding.favCharacterRv)
     }
 
-    private fun setupRv() {
+    private fun initViews() = with(binding) {
+        viewModel.getAllCharacters()
 
-        mAdapter = FavoriteRecyclerAdapter()
-        binding.favCharacterRv.apply {
-
+        favCharacterRv.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = mAdapter
-
+            adapter = favRecyclerAdapter
         }
     }
 
-    private fun observeCharacterList() {
+    private fun observe() {
         viewModel.characterList.observe(viewLifecycleOwner) { characters ->
-            mAdapter.submitList(characters)
+            favRecyclerAdapter.submitList(characters)
             checkListEmpty(characters.isEmpty())
         }
     }
 
-    private fun loadCharacters() {
-        viewModel.getAllCharacters()
-    }
-
-    private fun checkListEmpty(isEmpty: Boolean) {
-        binding.isEmptyMessage.isVisible = isEmpty
-        binding.favCharacterRv.isGone = isEmpty
+    private fun checkListEmpty(isEmpty: Boolean) = with(binding) {
+        isEmptyMessage.isVisible = isEmpty
+        favCharacterRv.isGone = isEmpty
     }
 
     override fun onDestroyView() {

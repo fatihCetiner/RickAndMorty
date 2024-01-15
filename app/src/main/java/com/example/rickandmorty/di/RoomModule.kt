@@ -15,8 +15,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RoomModule {
 
-    @Singleton
-    @Provides
+    @[Singleton Provides]
     fun provideRoomDatabase(application: Application): RickMortyDatabase {
         return Room.databaseBuilder(
             application, RickMortyDatabase::class.java,
@@ -26,12 +25,10 @@ object RoomModule {
             .build()
     }
 
-    @Singleton
-    @Provides
+    @[Singleton Provides]
     fun provideDao(database: RickMortyDatabase) = database.rickMortyDao()
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun provideRickMortyRepository(rickMortyDao: RickMortyDao): RickMortyRepositoryImpl {
         return RickMortyRepositoryImpl(rickMortyDao)
     }

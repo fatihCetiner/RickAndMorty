@@ -45,7 +45,7 @@ class HomeViewModel @Inject constructor(
         .onCompletion {
             _loadingState.value = false
         }
-        .catch { error ->
+        .catch { _ ->
             _loadingState.value = false
         }
 
@@ -54,7 +54,6 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             navigateDetailScreen.emit(characterId)
         }
-        Log.d("Observing", "Value emitted: $characterId")
     }
 
 }

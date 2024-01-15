@@ -14,14 +14,12 @@ import javax.inject.Singleton
 object FirebaseModule {
 
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun provideFirebaseAuth(): FirebaseAuth {
         return FirebaseAuth.getInstance()
     }
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun provideAuthRepository(firebaseAuth: FirebaseAuth): AuthRepository {
         return AuthRepositoryImpl(firebaseAuth)
     }
