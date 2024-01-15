@@ -1,6 +1,6 @@
 package com.example.rickandmorty.di
 
-import com.example.rickandmorty.data.remote.ApiService
+import com.example.rickandmorty.data.source.remote.ApiService
 import com.example.rickandmorty.utils.Constants
 import dagger.Module
 import dagger.Provides

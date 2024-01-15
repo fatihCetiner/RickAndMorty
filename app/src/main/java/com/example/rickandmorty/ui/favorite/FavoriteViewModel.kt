@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickandmorty.data.remote.dto.RickMorty
+import com.example.rickandmorty.data.source.remote.dto.RickMorty
 import com.example.rickandmorty.data.repository.RickMortyRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

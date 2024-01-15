@@ -1,6 +1,6 @@
 package com.example.rickandmorty.domain.repository
 
-import com.example.rickandmorty.data.remote.dto.RickMorty
+import com.example.rickandmorty.data.source.remote.dto.RickMorty
 
 
 interface RickMortyRepository {

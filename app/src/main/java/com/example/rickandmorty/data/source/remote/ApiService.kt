@@ -1,7 +1,7 @@
-package com.example.rickandmorty.data.remote
+package com.example.rickandmorty.data.source.remote
 
-import com.example.rickandmorty.data.remote.dto.ResponseApi
-import com.example.rickandmorty.data.remote.dto.RickMorty
+import com.example.rickandmorty.data.source.remote.dto.ResponseApi
+import com.example.rickandmorty.data.source.remote.dto.RickMorty
 import com.example.rickandmorty.utils.Constants
 import retrofit2.Response
 import retrofit2.http.GET

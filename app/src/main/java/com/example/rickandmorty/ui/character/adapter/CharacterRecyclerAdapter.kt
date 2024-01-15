@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.example.rickandmorty.data.remote.dto.RickMorty
+import com.example.rickandmorty.data.source.remote.dto.RickMorty
 import com.example.rickandmorty.databinding.RickMortyLayoutBinding
 
 class CharacterRecyclerAdapter(

@@ -1,7 +1,7 @@
 package com.example.rickandmorty.ui.character.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rickandmorty.data.remote.dto.RickMorty
+import com.example.rickandmorty.data.source.remote.dto.RickMorty
 import com.example.rickandmorty.databinding.RickMortyLayoutBinding
 import com.example.rickandmorty.utils.downloadFromUrl
 import com.example.rickandmorty.utils.placeholderProgressBar

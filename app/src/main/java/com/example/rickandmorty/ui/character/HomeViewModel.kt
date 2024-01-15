@@ -9,8 +9,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.example.rickandmorty.data.remote.ApiService
-import com.example.rickandmorty.data.remote.dto.RickMorty
+import com.example.rickandmorty.data.source.remote.ApiService
+import com.example.rickandmorty.data.source.remote.dto.RickMorty
 import com.example.rickandmorty.utils.RickMortyPagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

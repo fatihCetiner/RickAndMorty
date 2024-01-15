@@ -1,7 +1,7 @@
 package com.example.rickandmorty.data.repository
 
-import com.example.rickandmorty.data.remote.dto.RickMorty
-import com.example.rickandmorty.data.local.RickMortyDao
+import com.example.rickandmorty.data.source.remote.dto.RickMorty
+import com.example.rickandmorty.data.source.local.RickMortyDao
 import com.example.rickandmorty.domain.repository.RickMortyRepository
 import javax.inject.Inject
 
