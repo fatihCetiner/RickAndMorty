@@ -26,12 +26,6 @@ class FavoriteViewModel @Inject constructor(
             val characters = repository.getAllCharacters()
             _characterList.value = characters
             _isEmpty.value = characters.isEmpty()
-            /*if (characters.isNotEmpty()) {
-                _characterList.value = characters
-                _isEmpty.value = false
-            } else {
-                _isEmpty.value = true
-            }*/
         }
     }
 

@@ -8,14 +8,12 @@
     <color name="black">#000000</color>
     <color name="dark_surface">#333333</color>
 
-    <!-- Light Theme Colors -->
-    <color name="primaryColor">#3700B3</color>
+    <!-- Dark Theme Colors -->
+    <color name="primaryColor">#12005E</color>
     <color name="secondaryColor">#6200EE</color>
-    <color name="thirdColor">#BB86FC</color>
-    <color name="textColor">#000000</color>
+    <color name="thirdColor">#03DAC5</color>
+    <color name="textColor">#FFFFFF</color>
     <color name="textColorStatus">#FFFFFF</color>
     <color name="statusBarColor">#333333</color>
-    <color name="backgroundColor">#FFFFFF</color>
-
-
+    <color name="backgroundColor">#121212</color>
 </resources>

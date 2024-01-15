@@ -28,7 +28,7 @@
             android:layout_margin="10dp"
             android:fontFamily="casual"
             android:text="TextView"
-            android:textColor="@color/black"
+            android:textColor="@color/textColor"
             android:textSize="24sp"
             android:textStyle="bold|italic" />
     </LinearLayout>

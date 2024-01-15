@@ -9,7 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favCharacterRv"
-        android:background="#F0F0F0"
+        android:background="@color/backgroundColor"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,7 +24,7 @@
         android:text="@string/no_character_msg"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/textColor"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/favCharacterRv"
         app:layout_constraintEnd_toEndOf="@+id/favCharacterRv"

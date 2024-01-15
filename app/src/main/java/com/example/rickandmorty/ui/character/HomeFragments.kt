@@ -27,7 +27,6 @@ class HomeFragments : Fragment() {
     private var _binding: FragmentHomeFragmentsBinding? = null
     private val binding get() = _binding!!
 
-    //private lateinit var mAdapter: CharacterRecyclerAdapter
     private val viewModel: HomeViewModel by viewModels()
 
     private val characterAdapter: CharacterRecyclerAdapter by lazy {
@@ -37,7 +36,6 @@ class HomeFragments : Fragment() {
             }
         })
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
