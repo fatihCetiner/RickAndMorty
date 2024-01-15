@@ -1,5 +1,6 @@
 package com.example.rickandmorty.ui.character
 
+import android.app.DownloadManager.Request
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -55,6 +56,7 @@ class HomeViewModel @Inject constructor(
             navigateDetailScreen.emit(characterId)
         }
     }
+
 
 }
 

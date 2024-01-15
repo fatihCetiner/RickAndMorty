@@ -23,6 +23,7 @@ object AppModule {
     fun provideRetrofitInstance(baseUrl: String): ApiService =
         Retrofit.Builder()
             .baseUrl(baseUrl)
+            .client(provideOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
@@ -37,3 +38,5 @@ object AppModule {
             .build()
     }
 }
+
+
