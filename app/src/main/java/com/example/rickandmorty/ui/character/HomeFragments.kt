@@ -27,14 +27,22 @@ class HomeFragments : Fragment() {
     private var _binding: FragmentHomeFragmentsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var mAdapter: CharacterRecyclerAdapter
+    //private lateinit var mAdapter: CharacterRecyclerAdapter
     private val viewModel: HomeViewModel by viewModels()
+
+    private val characterAdapter: CharacterRecyclerAdapter by lazy {
+        CharacterRecyclerAdapter(object : CharacterRecyclerAdapter.CharacterCallbacks {
+            override fun onClickCharacter(characterId: Int) {
+                viewModel.clickCharacter(characterId)
+            }
+        })
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentHomeFragmentsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,65 +50,44 @@ class HomeFragments : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.title = getString(R.string.page_characters)
-        setupRv()
-        loadingData()
-        isLoading()
-        //observe()
-    }
-    /*
-    private fun observe() {
-        lifecycleScope.launchWhenCreated {
 
-            Log.d("Observing", "collectLatest block started")
-
-            viewModel.navigateDetailScreen.collectLatest { characterId ->
-
-                Log.d("Observing", "collectLatest block called with characterId: $characterId")
-
-                val action =
-                    HomeFragmentsDirections.actionHomeFragmentsToDetailsFragment(characterId)
-                findNavController().navigate(action)
-
-                Log.d("Observing", "Navigation completed")
-            }
-        }
+        initViews()
+        observe()
     }
 
-     */
 
-    private fun setupRv() {
-        mAdapter = CharacterRecyclerAdapter(object : CharacterRecyclerAdapter.CharacterCallbacks {
-            override fun onClickCharacter(characterId: Int) {
-                viewModel.clickCharacter(characterId)
-                val action =
-                    HomeFragmentsDirections.actionHomeFragmentsToDetailsFragment(characterId)
-                findNavController().navigate(action)
-            }
-        })
+    fun initViews(){
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = mAdapter
+            adapter = characterAdapter
             setHasFixedSize(true)
         }
     }
 
-    private fun loadingData() {
+    private fun observe() = with(binding) {
+
+        lifecycleScope.launchWhenCreated {
+            viewModel.navigateDetailScreen.collectLatest { characterId ->
+                val action =
+                    HomeFragmentsDirections.actionHomeFragmentsToDetailsFragment(characterId)
+                findNavController().navigate(action)
+            }
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 viewModel.listData.collectLatest { pagingData ->
-                    mAdapter.submitData(pagingData)
+                    characterAdapter.submitData(pagingData)
                 }
             } catch (e: Exception) {
                 Log.e("Error", "Not Loading Data !")
             }
         }
-    }
 
-    private fun isLoading() {
         viewLifecycleOwner.lifecycleScope.launch {
-            mAdapter.loadStateFlow.collectLatest { loadStates ->
-                binding.progressBar.isVisible = loadStates.refresh is LoadState.Loading
-                binding.errorMsg.isVisible = loadStates.refresh is LoadState.Error
+            characterAdapter.loadStateFlow.collectLatest { loadStates ->
+                progressBar.isVisible = loadStates.refresh is LoadState.Loading
+                errorMsg.isVisible = loadStates.refresh is LoadState.Error
             }
         }
     }

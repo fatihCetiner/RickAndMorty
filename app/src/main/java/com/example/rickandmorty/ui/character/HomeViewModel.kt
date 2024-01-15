@@ -51,7 +51,9 @@ class HomeViewModel @Inject constructor(
 
 
     fun clickCharacter(characterId: Int) {
-        navigateDetailScreen.tryEmit(characterId)
+        viewModelScope.launch {
+            navigateDetailScreen.emit(characterId)
+        }
         Log.d("Observing", "Value emitted: $characterId")
     }
 
