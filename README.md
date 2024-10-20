@@ -1,64 +1,46 @@
-# Rick and Morty Karakterleri Uygulaması
+# Rick and Morty
 
-Bu, güncel kütüphaneler kullanılarak geliştirilmiş bir çizgi film karakterleri uygulamasıdır. Uygulama, https://rickandmortyapi.com/api/ adresinin sağladığı verileri kullanır.
+Rick and Morty Explorer is an Android application that fetches data from the [Rick and Morty API](https://rickandmortyapi.com/) and displays a list of characters from the show. The app is built using XML layouts and follows the MVVM architecture pattern. It includes features for listing characters, viewing detailed information for each character, and saving favorite characters locally.
 
-## Kullanılan Teknolojiler
+## Features 🚀
+- Character Listing: View a list of characters from the Rick and Morty universe.
+- Character Details: View detailed information about each character.
+- Favorites: Save characters to a favorites list for quick access.
+- Pagination: Supports pagination for loading large sets of data efficiently.
+- Multiple theme support: You can change the theme in the application settings
 
-- Retrofit & Coroutine: HTTP isteklerini yapmak ve verileri almak için kullanılan bir kütüphane ve asenkron işlemleri yönetmek için Coroutine kullanılır.
-- Room Database: Uygulama verilerini yerel olarak depolamak için kullanılan bir SQLite nesne ilişkisel eşleme (ORM) kütüphanesidir.
-- Pagination Framework: Büyük veri setlerini sayfalara bölmek ve verileri parçalı olarak yüklemek için kullanılan bir kütüphane.
-- MVVM (Model-View-ViewModel): Uygulama mimarisi olarak MVVM kullanılır. Bu mimaride veri kaynağı (Model), kullanıcı arayüzü (View) ve iş mantığı (ViewModel) ayrı ayrı ele alınır.
-- Fragment Navigation Framework: Uygulama içindeki gezinmeyi yönetmek için kullanılan bir kütüphane.
-- Glide Extension: İnternetten resimleri yüklemek ve görüntülemek için kullanılan bir resim işleme kütüphanesidir.
+## Screenshots 📱
+Below are some screenshots of the app:
 
-## Kurulum
+## Technologies and Libraries Used 🛠
+- Retrofit: For making API requests to the Rick and Morty API.
+- Coroutines: For managing background tasks such as API requests.
+- Room: For saving and retrieving favorite characters locally.
+- Pagination: For loading paginated data from the API.
+- Fragment Navigation: For handling navigation between different screens.
+- Glide: For loading character images.
 
-1. Bu depoyu yerel makinenize klonlayın.
-2. Android Studio'yu açın ve projeyi içe aktarın.
-3. Gerekli bağımlılıkları indirmek için Gradle Sync'i çalıştırın.
+## Architecture Details 🛠️
 
-## Kullanım
+- MVVM Architecture:
+  <br>
+1- ViewModel: Manages the UI state and handles business logic.
+  <br>
+2- Repository: Fetches data from the Rick and Morty API or local Room database.
+  
+- Coroutine Support: API calls and database operations are handled asynchronously with Kotlin Coroutines.
+- Fragment Navigation: The app uses the Fragment Navigation component to move between the character list, detail screen, and favorites.
 
-1. Uygulamayı çalıştırın.
-2. Ana ekranda çizgi film karakterlerini görüntüleyin.
-3. Karakterler hakkında ayrıntılı bilgileri görmek için bir karaktere dokunun.
-4. Favori karakterinizi kayıt edin ve listeleyin.
-5. Eğer isterseniz favori karakterinizi sola kaydırarak silin.
+## Setup and Run
 
-## Örnek Kullanım Kodu
-
-Uygulama içinde Retrofit ile API istekleri yapılır ve veriler Room Database'e kaydedilir. Örnek kullanım kodu aşağıdaki gibi olabilir:
-
-```kotlin
-// API isteği yapmak için Retrofit service'ini oluşturun
-val retrofit = Retrofit.Builder()
-    .baseUrl("https://rickandmortyapi.com/api/")
-    .addConverterFactory(GsonConverterFactory.create())
-    .build()
-
-val service = retrofit.create(ApiService::class.java)
-
-// Karakterleri almak için bir istek yapın
-val response = service.getCharacters()
-
-// İstek sonucunu işleyin ve verileri Room Database'e kaydedin
-response.enqueue(object : Callback<CharacterResponse> {
-    override fun onResponse(call: Call<CharacterResponse>, response: Response<CharacterResponse>) {
-        if (response.isSuccessful) {
-            val characters = response.body()?.results
-            // Verileri Room Database'e kaydedin
-            // ...
-        }
-    }
-
-    override fun onFailure(call: Call<CharacterResponse>, t: Throwable) {
-        // Hata durumunda işlemleri ele alın
-        // ...
-    }
-})
+1- Clone the repository:
+```bash
+git clone https://github.com/your-username/rick-and-morty.git
 ```
-## Katkıda Bulunma
-Eğer bu projeye katkıda bulunmak isterseniz, lütfen CONTRIBUTING.md dosyasını inceleyin ve pull request göndermeden önce geliştirme adımlarını takip edin.
+2- Open the project in Android Studio and run it on your device/emulator.
 
-## Teşekkürler
-Bu uygulama, Rick and Morty API'si ve kullanılan kütüphaneler sayesinde oluşturulmuştur. Proje için geliştiricilere teşekkür ederiz.
+## Contributing
+Feel free to contribute by:
+- Forking the repository.
+- Working on a new feature or bug fix.
+- Submitting a pull request.
