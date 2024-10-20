@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.example.rickandmorty.R
 import com.example.rickandmorty.databinding.FragmentDetailsBinding
 import com.example.rickandmorty.utils.DateConverter.Companion.convertDate
@@ -24,12 +25,11 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
-    private var id: Int? = null
-
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: DetailsViewModel by viewModels()
+    private val args: DetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +45,9 @@ class DetailsFragment : Fragment() {
 
         activity?.title = getString(R.string.page_detail)
 
-        arguments?.let {
-            id = DetailsFragmentArgs.fromBundle(it).id
-            viewModel.getCharacter(id!!)
-        }
+        val characterId = args.id
+        viewModel.getCharacter(characterId)
+
         observeLiveData()
 
         binding.floatingActionButton.setOnClickListener {
@@ -66,9 +65,9 @@ class DetailsFragment : Fragment() {
     }
 
     private fun showSnackBar() {
-        val snackbar =
-            Snackbar.make(binding.root, getString(R.string.character_saved), Snackbar.LENGTH_SHORT)
-        snackbar.setAction(getString(R.string.my_fav_character)) {
+        val snackBar =
+            Snackbar.make(requireView(), getString(R.string.character_saved), Snackbar.LENGTH_SHORT)
+        snackBar.setAction(getString(R.string.my_fav_character)) {
             val navOptions = NavOptions.Builder()
                 .setPopUpTo(R.id.detailsFragment, false) //  Close detailsFragment on return
                 .build()
@@ -76,7 +75,7 @@ class DetailsFragment : Fragment() {
             Navigation.findNavController(binding.root)
                 .navigate(R.id.action_detailsFragment_to_favoriteFragments, null, navOptions)
         }
-        snackbar.show()
+        snackBar.show()
     }
 
     @SuppressLint("SetTextI18n")
