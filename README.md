@@ -11,6 +11,12 @@ Rick and Morty Explorer is an Android application that fetches data from the [Ri
 
 ## Screenshots 📱
 Below are some screenshots of the app:
+<p align="center"> 
+  <img src="screenshots/character_list_light.png" alt="Character List Screen" width="200"/>
+  <img src="screenshots/character_detail_dark.png" alt="Character Detail Screen" width="200"/>
+  <img src="screenshots/fav_character_light.png" alt="Fav Character Screen" width="200"/>
+  <img src="screenshots/multiple_theme.png" alt="Settings Screen" width="200"/>
+</p>
 
 ## Technologies and Libraries Used 🛠
 - Retrofit: For making API requests to the Rick and Morty API.
